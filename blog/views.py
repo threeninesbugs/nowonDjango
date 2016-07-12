@@ -38,7 +38,8 @@ def post_write(request):
 		form = ContactForm(request.POST)
 
 		if form.is_valid():
-			code = str(form)
+			code = form.cleaned_data['content']
+			code = str(code)
 			f = open('test.py','w')
 			f.write(code)
 			f.close()
