@@ -40,13 +40,21 @@ def post_write(request):
 		if form.is_valid():
 			code = form.cleaned_data['content']
 			code = str(code)
-			f = open('test.py','w')
-			f.write(code)
-			f.close()
-			return render(request, 'blog/result.html', {'form': form})
+			#f = open('test.py','w')
+			#f.write(code)
+			#f.close()
+			#exec(code)
+			coordinate=[]
+			for i in range(5):
+				coordinate.append(ReturnValue(i,i))
+			for i in range(5):
+				print(coordinate[i].x, coordinate[i].y)
+			value = eval(code)
+			print (value)
+			return render(request, 'blog/result.html', {'form': coordinate})
 	return render(request, '',)
 
-def post_result(request):
-	form = ContactForm
-	content = get_object_or_404(form)
-	return render(request, 'blog/result.html',{'form': content})
+class ReturnValue(object):
+	def __init__(self, x, y):
+		self.x = x
+		self.y = y
