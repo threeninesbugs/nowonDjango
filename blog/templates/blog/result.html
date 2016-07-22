@@ -5,16 +5,28 @@
 	<div class="post">
 		<h1>result</h1>
 		{% for i in form %}
-		<div>{{ i.x }},{{ i.y }}</div>
+		
+		{% if forloop.last %}
+		<h2>결과</h2>
+		<h3>{{ i.success }}, 칠한비율: {{ i.percent }}%</h3>
+		{% else %}
+			<div>{{ i.x }},{{ i.y }}</div>
+		{% endif %}
 		{% empty %}
 		<div>값이 없습니다</div>
 		{% endfor %}
 	</div>
+	{{last}}
 <script type="text/javascript">
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
     ctx.moveTo(0,0);
-    ctx.lineTo(200,100);
+    ctx.lineTo(20,0);
+    ctx.lineTo(40,0);
+    ctx.lineTo(60,0);
+    ctx.lineTo(80,0);
+    ctx.lineTo(90,0);
+    ctx.lineWidth=20;
     ctx.stroke();
 </script>
 {% endblock %}

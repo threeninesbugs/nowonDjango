@@ -45,12 +45,20 @@ def post_write(request):
 			#f.close()
 			#exec(code)
 			coordinate=[]
-			for i in range(5):
-				coordinate.append(ReturnValue(i,i))
-			for i in range(5):
-				print(coordinate[i].x, coordinate[i].y)
-			value = eval(code)
-			print (value)
+			#for i in range(5):
+			#	print(coordinate[i].x, coordinate[i].y)
+			value = 0
+			
+			try:
+				a=0
+				c=0
+				value = exec(code)
+				#for i in range(5):
+				#	coordinate.append(ReturnValue(i,i))
+				#coordinate.append(ReturnValue2("success","5"))
+			except Exception:
+				coordinate.append(ReturnValue2("failed","1"))
+			print (a)
 			return render(request, 'blog/result.html', {'form': coordinate})
 	return render(request, '',)
 
@@ -58,3 +66,8 @@ class ReturnValue(object):
 	def __init__(self, x, y):
 		self.x = x
 		self.y = y
+
+class ReturnValue2(object):
+	def __init__(self, x, y):
+		self.success = x
+		self.percent = y
